@@ -348,7 +348,7 @@ class PlanningGraph():
         
         s_nodes = set()
         for a_node in self.a_levels[level - 1]:
-            # add state nodes accordnig to effects of action nodes
+            # add state nodes according to effects of action nodes
             for effect in a_node.effnodes:
                 # create state node
                 s_node = PgNode_s(effect.symbol, effect.is_pos)
@@ -536,9 +536,9 @@ class PlanningGraph():
 
         # go through all state levels
         for level, s_level in enumerate(self.s_levels):
-            # go throug all state nodes in the level
+            # go through all state nodes in the level
             for s_node in s_level:
-                # increase sum of the level if the goal (== node literal) is seen first time
+                # increase sum of the level if the goal (== node literal) if seen first time
                 if s_node.symbol in self.problem.goal and \
                         s_node.is_pos and \
                             s_node.symbol not in goals_found_so_far:

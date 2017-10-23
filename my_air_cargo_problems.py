@@ -133,15 +133,20 @@ class AirCargoProblem(Problem):
         kb.tell(decode_state(state, self.state_map).pos_sentence())
         for action in self.actions_list:
             can_be_executed = True
+
+            # are all positive preconditions satisfied in the state?
             for precond in action.precond_pos:
                 if precond not in kb.clauses:
                     can_be_executed = False
                     break
+
             if can_be_executed:
+                # are all negative preconditions satisfied in the state?
                 for precond in action.precond_neg:
                     if precond in kb.clauses:
                         can_be_executed = False
                         break
+
             if can_be_executed:
                 possible_actions.append(action)
 
@@ -227,6 +232,10 @@ class AirCargoProblem(Problem):
 
 
 def air_cargo_p1() -> AirCargoProblem:
+    """
+    Problem 1 definition
+    :return: Air cargo problem instance
+    """
     cargos = ['C1', 'C2']
     planes = ['P1', 'P2']
     airports = ['JFK', 'SFO']
@@ -252,6 +261,10 @@ def air_cargo_p1() -> AirCargoProblem:
 
 
 def air_cargo_p2() -> AirCargoProblem:
+    """
+    Problem 2 definition
+    :return: Air cargo problem instance
+    """
     cargos = ['C1', 'C2', 'C3']
     planes = ['P1', 'P2', 'P3']
     airports = ['JFK', 'SFO', 'ATL']
@@ -293,6 +306,10 @@ def air_cargo_p2() -> AirCargoProblem:
 
 
 def air_cargo_p3() -> AirCargoProblem:
+    """
+    Problem 3 definition
+    :return: Air cargo problem instance
+    """
     cargos = ['C1', 'C2', 'C3', 'C4']
     planes = ['P1', 'P2']
     airports = ['JFK', 'SFO', 'ATL', 'ORD']
